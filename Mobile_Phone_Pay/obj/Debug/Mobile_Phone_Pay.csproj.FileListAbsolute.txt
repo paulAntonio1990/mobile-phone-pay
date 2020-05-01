@@ -7,3 +7,7 @@ C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Ph
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.csproj.CoreCompileInputs.cache
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.exe
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.pdb
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Form1.resources
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.ExtraOptiuniForm.resources
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.AbonamenteForm.resources
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.ClientiForm.resources
