@@ -50,6 +50,7 @@
     <Compile Include="Entity\ExtraOptiune.cs" />
     <Compile Include="Entity\Plata.cs" />
     <Compile Include="Entity\TipAbonament.cs" />
+    <Compile Include="Exceptions\InvalidDueDateException.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +69,12 @@
     <Compile Include="Forms\ClientiForm.Designer.cs">
       <DependentUpon>ClientiForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditTipAbonamentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditTipAbonamentForm.Designer.cs">
+      <DependentUpon>EditTipAbonamentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExtraOptiuniForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +91,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ClientiForm.resx">
       <DependentUpon>ClientiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditTipAbonamentForm.resx">
+      <DependentUpon>EditTipAbonamentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExtraOptiuniForm.resx">
       <DependentUpon>ExtraOptiuniForm.cs</DependentUpon>

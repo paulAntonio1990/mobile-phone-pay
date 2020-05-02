@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ArrayOfTipAbonament xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TipAbonament>
+    <Name>Tip 1</Name>
+    <NoMinutes>12</NoMinutes>
+    <NoMessages>12</NoMessages>
+    <NoNetMb>12</NoNetMb>
+    <Plata>
+      <Value>12</Value>
+      <DueDate>2020-05-15T18:57:10</DueDate>
+    </Plata>
+  </TipAbonament>
+  <TipAbonament>
+    <Name>Tip 3</Name>
+    <NoMinutes>12</NoMinutes>
+    <NoMessages>12</NoMessages>
+    <NoNetMb>43</NoNetMb>
+    <Plata>
+      <Value>12</Value>
+      <DueDate>2020-05-15T18:57:22</DueDate>
+    </Plata>
+  </TipAbonament>
+</ArrayOfTipAbonament>
