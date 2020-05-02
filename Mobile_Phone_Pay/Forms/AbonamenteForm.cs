@@ -319,5 +319,25 @@ namespace Mobile_Phone_Pay.Forms
                 AfisareAbonamente();
             }
         }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            if (lvTipAbonament.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("Alegeti un abonament!");
+                return;
+            }
+
+            if (MessageBox.Show("Sunteti sigur?", 
+                "Stergere Tip Abonament",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                ListViewItem lvi = lvTipAbonament.SelectedItems[0];
+                TipAbonament abonament = (TipAbonament)lvi.Tag;
+                abonamente.Remove(abonament);
+                AfisareAbonamente();
+            }
+        }
     }
 }

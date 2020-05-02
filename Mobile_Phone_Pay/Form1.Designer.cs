@@ -39,7 +39,7 @@
             this.btnClienti.Name = "btnClienti";
             this.btnClienti.Size = new System.Drawing.Size(260, 45);
             this.btnClienti.TabIndex = 0;
-            this.btnClienti.Text = "Clienti";
+            this.btnClienti.Text = "&Clienti";
             this.btnClienti.UseVisualStyleBackColor = true;
             this.btnClienti.Click += new System.EventHandler(this.BtnClienti_Click);
             // 
@@ -49,7 +49,7 @@
             this.btnAbonamente.Name = "btnAbonamente";
             this.btnAbonamente.Size = new System.Drawing.Size(260, 45);
             this.btnAbonamente.TabIndex = 1;
-            this.btnAbonamente.Text = "Abonamente";
+            this.btnAbonamente.Text = "&Abonamente";
             this.btnAbonamente.UseVisualStyleBackColor = true;
             this.btnAbonamente.Click += new System.EventHandler(this.BtnAbonamente_Click);
             // 
@@ -59,7 +59,7 @@
             this.btnExtraOptiuni.Name = "btnExtraOptiuni";
             this.btnExtraOptiuni.Size = new System.Drawing.Size(260, 45);
             this.btnExtraOptiuni.TabIndex = 2;
-            this.btnExtraOptiuni.Text = "Extra-optiuni";
+            this.btnExtraOptiuni.Text = "&Extra-optiuni";
             this.btnExtraOptiuni.UseVisualStyleBackColor = true;
             this.btnExtraOptiuni.Click += new System.EventHandler(this.BtnExtraOptiuni_Click);
             // 

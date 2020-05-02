@@ -20,4 +20,14 @@
       <DueDate>2020-05-15T18:57:22</DueDate>
     </Plata>
   </TipAbonament>
+  <TipAbonament>
+    <Name>Tip 3</Name>
+    <NoMinutes>111</NoMinutes>
+    <NoMessages>222</NoMessages>
+    <NoNetMb>333</NoNetMb>
+    <Plata>
+      <Value>12.33</Value>
+      <DueDate>2020-05-22T21:57:44</DueDate>
+    </Plata>
+  </TipAbonament>
 </ArrayOfTipAbonament>

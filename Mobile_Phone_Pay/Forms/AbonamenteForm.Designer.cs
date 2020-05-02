@@ -64,6 +64,7 @@
             this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deserializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Delete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epName)).BeginInit();
@@ -76,6 +77,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Delete);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.btnAdd);
@@ -99,7 +101,7 @@
             // 
             this.btnClose.CausesValidation = false;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(654, 146);
+            this.btnClose.Location = new System.Drawing.Point(674, 146);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(81, 24);
             this.btnClose.TabIndex = 11;
@@ -110,7 +112,7 @@
             // btnEdit
             // 
             this.btnEdit.CausesValidation = false;
-            this.btnEdit.Location = new System.Drawing.Point(536, 146);
+            this.btnEdit.Location = new System.Drawing.Point(501, 146);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(86, 24);
             this.btnEdit.TabIndex = 10;
@@ -120,7 +122,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(424, 146);
+            this.btnAdd.Location = new System.Drawing.Point(409, 146);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(86, 24);
             this.btnAdd.TabIndex = 9;
@@ -372,6 +374,17 @@
             this.deserializeToolStripMenuItem.Text = "Deserialize";
             this.deserializeToolStripMenuItem.Click += new System.EventHandler(this.DeserializeToolStripMenuItem_Click);
             // 
+            // Delete
+            // 
+            this.Delete.CausesValidation = false;
+            this.Delete.Location = new System.Drawing.Point(593, 147);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 12;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
             // AbonamenteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -438,5 +451,6 @@
         private System.Windows.Forms.ToolStripMenuItem xMLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serializeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deserializeToolStripMenuItem;
+        private System.Windows.Forms.Button Delete;
     }
 }
