@@ -354,5 +354,217 @@ namespace Mobile_Phone_Pay.Forms
                 AfisareExtraOptiuni();
             }
         }
+
+        private void PageSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pageSetupDialog.Document = printDocument;
+            pageSetupDialog.PageSettings = printDocument.DefaultPageSettings;
+
+            if (pageSetupDialog.ShowDialog() == DialogResult.OK)
+                printDocument.DefaultPageSettings = pageSetupDialog.PageSettings;
+        }
+
+        int currentExtraOptiuneIndex = 0;
+        private readonly int currentExtr;
+
+        private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Initialize the font to be used for printing.
+            Font font = new Font("Microsoft Sans Serif", 12);
+
+            var pageSettings = printDocument.DefaultPageSettings;
+            // Initialize local variables that contain the bounds of the printing 
+            // area rectangle.
+            var intPrintAreaHeight = pageSettings.PaperSize.Height - pageSettings.Margins.Top - pageSettings.Margins.Bottom;
+            var intPrintAreaWidth = pageSettings.PaperSize.Width - pageSettings.Margins.Left - pageSettings.Margins.Right;
+
+            // Initialize local variables to hold margin values that will serve
+            // as the X and Y coordinates for the upper left corner of the printing 
+            // area rectangle.
+            var marginLeft = pageSettings.Margins.Left;
+            // X coordinate
+            var marginTop = pageSettings.Margins.Top;
+            // Y coordinate
+
+            // If the user selected Landscape mode, swap the printing area height 
+            // and width.
+            if (printDocument.DefaultPageSettings.Landscape)
+            {
+                var intTemp = intPrintAreaHeight;
+                intPrintAreaHeight = intPrintAreaWidth;
+                intPrintAreaWidth = intTemp;
+            }
+
+            const int rowHeight = 40;
+            var columnWidth = intPrintAreaWidth / 5;
+
+            // Instantiate the StringFormat class, which encapsulates text layout 
+            // information (such as alignment and line spacing), display manipulations 
+            // (such as ellipsis insertion and national digit substitution) and OpenType 
+            // features. Use of StringFormat causes MeasureString and DrawString to use
+            // only an integer number of lines when printing each page, ignoring partial
+            // lines that would otherwise likely be printed if the number of lines per 
+            // page do not divide up cleanly for each page (which is usually the case).
+            // See further discussion in the SDK documentation about StringFormatFlags.
+            StringFormat fmt = new StringFormat(StringFormatFlags.LineLimit);
+            fmt.Trimming = StringTrimming.EllipsisCharacter;
+
+            var currentY = marginTop;
+            AppendHeaderToPrint(e, font, marginLeft, rowHeight, columnWidth, fmt, currentY);
+
+            currentY += rowHeight;
+
+            while (currentExtraOptiuneIndex < extraOptiuni.Count)
+            {
+                //Reset the horizontal drawing coordinate
+                var currentX = marginLeft;
+
+                //Draw the border of the cell
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+                //Draw the text in the cell
+                /*e.Graphics.DrawString(
+                    _participants[i].FirstName,
+                    font,
+                    Brushes.Black,
+                    currentX,
+                    currentY,
+                    fmt);*/
+                // By specifying a LayoutRectangle, we are forcing the text into a specific area, with automatic word wrapping and other features controllable through the StringFormat parameter
+                e.Graphics.DrawString(
+                    extraOptiuni[currentExtr].Name,
+                    font,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    fmt);
+                //Update the horizontal drawing coordinate
+                currentX += columnWidth;
+
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+                e.Graphics.DrawString(
+                    extraOptiuni[currentExtraOptiuneIndex].NoMinutes.ToString(),
+                    font,
+                    Brushes.Black,
+                    currentX,
+                    currentY,
+                    fmt);
+                currentX += columnWidth;
+
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+                e.Graphics.DrawString(
+                    extraOptiuni[currentExtraOptiuneIndex].NoMessages.ToString(),
+                    font,
+                    Brushes.Black,
+                    currentX,
+                    currentY,
+                    fmt);
+                currentX += columnWidth;
+
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+                e.Graphics.DrawString(
+                    extraOptiuni[currentExtraOptiuneIndex].NoNetMb.ToString(),
+                    font,
+                    Brushes.Black,
+                    currentX,
+                    currentY,
+                    fmt);
+                currentX += columnWidth;
+
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+                e.Graphics.DrawString(
+                    extraOptiuni[currentExtraOptiuneIndex].Price.ToString(),
+                    font,
+                    Brushes.Black,
+                    currentX,
+                    currentY,
+                    fmt);
+
+                //Update the participant index
+                currentExtraOptiuneIndex++;
+                //Update the vertifcal drawing coordinate
+                currentY += rowHeight;
+
+
+                // HasMorePages tells the printing module whether another PrintPage event should be fired.
+                if (currentY + rowHeight > intPrintAreaHeight)
+                {
+                    e.HasMorePages = true;
+                    break;
+                }
+            }
+        }
+
+        private void AppendHeaderToPrint(System.Drawing.Printing.PrintPageEventArgs e, Font font, int marginLeft, int rowHeight, int columnWidth, StringFormat fmt, int currentY)
+        {
+            var curX = marginLeft;
+            foreach (ColumnHeader header in lvExtraOptiuni.Columns)
+            {
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    curX,
+                    currentY,
+                    columnWidth,
+                    rowHeight);
+
+                e.Graphics.DrawString(
+                    header.Text,
+                    font,
+                    Brushes.Black,
+                    new RectangleF(curX, currentY, columnWidth, rowHeight),
+                    fmt);
+                curX += columnWidth;
+            }
+        }
+
+        private void PrintDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            currentExtraOptiuneIndex = 0;
+        }
+
+        private void PrintPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                printPreviewDialog.Document = printDocument;
+                printPreviewDialog.ShowDialog();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error while printing!");
+            }
+        }
+
+        private void PrintToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog.Document = printDocument;
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+        }
     }
 }

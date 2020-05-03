@@ -100,7 +100,7 @@
             this.Delete.Location = new System.Drawing.Point(593, 147);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(75, 23);
-            this.Delete.TabIndex = 12;
+            this.Delete.TabIndex = 0;
             this.Delete.Text = "Delete";
             this.Delete.UseVisualStyleBackColor = true;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
@@ -123,7 +123,7 @@
             this.btnEdit.Location = new System.Drawing.Point(501, 146);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(86, 24);
-            this.btnEdit.TabIndex = 10;
+            this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
