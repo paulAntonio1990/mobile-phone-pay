@@ -2,32 +2,23 @@
 <ArrayOfTipAbonament xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <TipAbonament>
     <Name>Tip 1</Name>
-    <NoMinutes>12</NoMinutes>
-    <NoMessages>12</NoMessages>
-    <NoNetMb>12</NoNetMb>
-    <Plata>
-      <Value>12</Value>
-      <DueDate>2020-05-15T18:57:10</DueDate>
-    </Plata>
+    <NoMinutes>11</NoMinutes>
+    <NoMessages>11</NoMessages>
+    <NoNetMb>11</NoNetMb>
+    <Pret>11.11</Pret>
   </TipAbonament>
   <TipAbonament>
-    <Name>Tip 3</Name>
-    <NoMinutes>12</NoMinutes>
-    <NoMessages>12</NoMessages>
-    <NoNetMb>43</NoNetMb>
-    <Plata>
-      <Value>12</Value>
-      <DueDate>2020-05-15T18:57:22</DueDate>
-    </Plata>
-  </TipAbonament>
-  <TipAbonament>
-    <Name>Tip 3</Name>
-    <NoMinutes>111</NoMinutes>
+    <Name>Tip 2</Name>
+    <NoMinutes>222</NoMinutes>
     <NoMessages>222</NoMessages>
-    <NoNetMb>333</NoNetMb>
-    <Plata>
-      <Value>12.33</Value>
-      <DueDate>2020-05-22T21:57:44</DueDate>
-    </Plata>
+    <NoNetMb>222</NoNetMb>
+    <Pret>22.22</Pret>
+  </TipAbonament>
+  <TipAbonament>
+    <Name>Tip 3</Name>
+    <NoMinutes>3333</NoMinutes>
+    <NoMessages>3333</NoMessages>
+    <NoNetMb>33333</NoNetMb>
+    <Pret>33.33</Pret>
   </TipAbonament>
 </ArrayOfTipAbonament>

@@ -13,16 +13,16 @@ namespace Mobile_Phone_Pay.Entity
         public int NoMinutes { get; set; }
         public int NoMessages { get; set; }
         public int NoNetMb { get; set; }
-        public Plata Plata { get; set; }
+        public double Price { get; set; }
 
         public TipAbonament() { }
-        public TipAbonament(string name, int noMinutes, int noMessages, int noNetMb, Plata plata)
+        public TipAbonament(string name, int noMinutes, int noMessages, int noNetMb, double price)
         {
             Name = name;
             NoMinutes = noMinutes;
             NoMessages = noMessages;
             NoNetMb = noNetMb;
-            Plata = plata;
+            Price = price;
         }
     }
 }

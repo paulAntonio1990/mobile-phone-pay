@@ -26,8 +26,7 @@ namespace Mobile_Phone_Pay.Forms
             tbNrMinute.Text = tipAbonament.NoMinutes.ToString();
             tbNrMesaje.Text = tipAbonament.NoMessages.ToString();
             tbNrMbNet.Text = tipAbonament.NoNetMb.ToString();
-            tbValoare.Text = tipAbonament.Plata.Value.ToString();
-            dtpScadenta.Value = tipAbonament.Plata.DueDate;
+            tbValoare.Text = tipAbonament.Price.ToString();
         }
 
         private void BtnOk_Click(object sender, EventArgs e)
@@ -36,8 +35,7 @@ namespace Mobile_Phone_Pay.Forms
             tipAbonament.NoMinutes = int.Parse(tbNrMinute.Text);
             tipAbonament.NoMessages = int.Parse(tbNrMesaje.Text);
             tipAbonament.NoNetMb = int.Parse(tbNrMbNet.Text);
-            tipAbonament.Plata.Value = double.Parse(tbValoare.Text);
-            dtpScadenta.Value = tipAbonament.Plata.DueDate;
+            tipAbonament.Price = double.Parse(tbValoare.Text);
         }
     }
 }

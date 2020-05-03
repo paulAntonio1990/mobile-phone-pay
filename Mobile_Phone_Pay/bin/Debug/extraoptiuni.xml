@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ArrayOfExtraOptiune xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ExtraOptiune>
+    <Name>100Min+100SMS</Name>
+    <NoMinutes>12</NoMinutes>
+    <NoMessages>12</NoMessages>
+    <NoNetMb>2</NoNetMb>
+    <Price>12</Price>
+  </ExtraOptiune>
+  <ExtraOptiune>
+    <Name>1000min</Name>
+    <NoMinutes>1000</NoMinutes>
+    <NoMessages>0</NoMessages>
+    <NoNetMb>0</NoNetMb>
+    <Price>12</Price>
+  </ExtraOptiune>
+</ArrayOfExtraOptiune>

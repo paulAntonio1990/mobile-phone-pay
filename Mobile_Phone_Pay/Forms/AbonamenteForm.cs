@@ -102,7 +102,7 @@ namespace Mobile_Phone_Pay.Forms
             }
 
             string noMinutes = tbMinute.Text;
-            if (noMinutes.Length < 1 || noMinutes.StartsWith("0"))
+            if (noMinutes.Length < 1 || (noMinutes.StartsWith("0") && noMinutes.Length > 1))
             {
                 isValid = false;
                 epMinutes.SetError(
@@ -111,7 +111,7 @@ namespace Mobile_Phone_Pay.Forms
             }
 
             string noMessages = tbMesaje.Text;
-            if (noMessages.Length < 1 || noMessages.StartsWith("0"))
+            if (noMessages.Length < 1 || (noMessages.StartsWith("0") && noMessages.Length > 1))
             {
                 isValid = false;
                 epMessages.SetError(
@@ -120,7 +120,7 @@ namespace Mobile_Phone_Pay.Forms
             }
 
             string noNetMb = tbNet.Text;
-            if (noNetMb.Length < 1 || noNetMb.StartsWith("0"))
+            if (noNetMb.Length < 1 || (noNetMb.StartsWith("0") && noNetMb.Length > 1))
             {
                 isValid = false;
                 epNetMb.SetError(
@@ -128,10 +128,10 @@ namespace Mobile_Phone_Pay.Forms
                     "Invalid quantity!");
             }
 
-            string valoarePlati = tbValoare.Text;
-            if (valoarePlati.Length < 1 ||
-                (valoarePlati.StartsWith("0") && valoarePlati.IndexOf('.') != 1) ||
-                (valoarePlati.StartsWith("0") && valoarePlati.IndexOf('.') == 1 && valoarePlati.Length < 4))
+            string pretAbonament = tbValoare.Text;
+            if (pretAbonament.Length < 1 ||
+                (pretAbonament.StartsWith("0") && ((pretAbonament.Contains(".") && pretAbonament.IndexOf('.') != 1) || (!pretAbonament.Contains(".") && pretAbonament.Length > 1))) ||
+                (pretAbonament.StartsWith("0") && pretAbonament.Contains(".") && pretAbonament.IndexOf('.') == 1 && pretAbonament.Length < 3))
             {
                 isValid = false;
                 epValoarePlati.SetError(
@@ -151,13 +151,12 @@ namespace Mobile_Phone_Pay.Forms
             {
                 try
                 {
-                    var plata = new Plata(double.Parse(valoarePlati), dtpScadenta.Value);
                     var tipAbonament = new TipAbonament(
                         denumireAbonament,
                         int.Parse(noMinutes),
                         int.Parse(noMessages),
                         int.Parse(noNetMb),
-                        plata);
+                        double.Parse(pretAbonament));
 
                     abonamente.Add(tipAbonament);
 
@@ -168,11 +167,6 @@ namespace Mobile_Phone_Pay.Forms
                     tbMesaje.Clear();
                     tbNet.Clear();
                     tbValoare.Clear();
-                    dtpScadenta.Value = DateTime.Now;
-                }
-                catch ( InvalidDueDateException ex)
-                {
-                    MessageBox.Show("Invalid date:" + ex.dueDate);
                 }
                 catch
                 {
@@ -185,7 +179,7 @@ namespace Mobile_Phone_Pay.Forms
         private void TbMinute_Validating(object sender, CancelEventArgs e)
         {
             string noMinutes = tbMinute.Text;
-            if (noMinutes.Length < 1 || noMinutes.StartsWith("0"))
+            if (noMinutes.Length < 1 || (noMinutes.StartsWith("0") && noMinutes.Length > 1))
             {
                 epMinutes.SetError(
                     tbMinute,
@@ -202,7 +196,7 @@ namespace Mobile_Phone_Pay.Forms
         private void TbMesaje_Validating(object sender, CancelEventArgs e)
         {
             string noMessages = tbMesaje.Text;
-            if (noMessages.Length < 1 || noMessages.StartsWith("0"))
+            if (noMessages.Length < 1 || (noMessages.StartsWith("0") && noMessages.Length > 1))
             {
                 epMessages.SetError(
                     tbMesaje,
@@ -220,7 +214,7 @@ namespace Mobile_Phone_Pay.Forms
         private void TbNet_Validating(object sender, CancelEventArgs e)
         {
             string noNetMb = tbNet.Text;
-            if (noNetMb.Length < 1 || noNetMb.StartsWith("0"))
+            if (noNetMb.Length < 1 || (noNetMb.StartsWith("0") && noNetMb.Length > 1))
             {
                 epNetMb.SetError(
                     tbNet,
@@ -237,9 +231,9 @@ namespace Mobile_Phone_Pay.Forms
         private void TbValoare_Validating(object sender, CancelEventArgs e)
         {
             string valoarePlati = tbValoare.Text;
-            if (valoarePlati.Length < 1 || 
-                (valoarePlati.StartsWith("0") && valoarePlati.IndexOf('.') != 1) ||
-                (valoarePlati.StartsWith("0") && valoarePlati.IndexOf('.') == 1 && valoarePlati.Length < 4))
+            if (valoarePlati.Length < 1 ||
+                (valoarePlati.StartsWith("0") && ((valoarePlati.Contains(".") && valoarePlati.IndexOf('.') != 1) || (!valoarePlati.Contains(".") && valoarePlati.Length > 1))) ||
+                (valoarePlati.StartsWith("0") && valoarePlati.Contains(".") && valoarePlati.IndexOf('.') == 1 && valoarePlati.Length < 3))
             {
                 epValoarePlati.SetError(
                     tbValoare,
@@ -263,8 +257,7 @@ namespace Mobile_Phone_Pay.Forms
                 lvi.SubItems.Add(abonament.NoMinutes.ToString());
                 lvi.SubItems.Add(abonament.NoMessages.ToString());
                 lvi.SubItems.Add(abonament.NoNetMb.ToString());
-                lvi.SubItems.Add(abonament.Plata.Value.ToString());
-                lvi.SubItems.Add(abonament.Plata.DueDate.ToShortDateString());
+                lvi.SubItems.Add(abonament.Price.ToString());
                 lvi.Tag = abonament;
 
                 lvTipAbonament.Items.Add(lvi);

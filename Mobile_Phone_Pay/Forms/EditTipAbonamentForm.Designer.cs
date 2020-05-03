@@ -33,7 +33,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.tbDenumire = new System.Windows.Forms.TextBox();
             this.tbNrMinute = new System.Windows.Forms.TextBox();
             this.tbNrMesaje = new System.Windows.Forms.TextBox();
@@ -41,7 +40,6 @@
             this.tbValoare = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtpScadenta = new System.Windows.Forms.DateTimePicker();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -89,18 +87,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(23, 26);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 17);
+            this.label5.Size = new System.Drawing.Size(34, 17);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Valoare";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 53);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Scadenta";
+            this.label5.Text = "Pret";
             // 
             // tbDenumire
             // 
@@ -157,23 +146,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dtpScadenta);
             this.groupBox2.Controls.Add(this.tbValoare);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(13, 145);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(365, 92);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Plata";
-            // 
-            // dtpScadenta
-            // 
-            this.dtpScadenta.Location = new System.Drawing.Point(111, 53);
-            this.dtpScadenta.Name = "dtpScadenta";
-            this.dtpScadenta.Size = new System.Drawing.Size(215, 22);
-            this.dtpScadenta.TabIndex = 11;
+            this.groupBox2.Text = "Detalii Taxare";
             // 
             // btnCancel
             // 
@@ -222,7 +202,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbDenumire;
         private System.Windows.Forms.TextBox tbNrMinute;
         private System.Windows.Forms.TextBox tbNrMesaje;
@@ -230,7 +209,6 @@
         private System.Windows.Forms.TextBox tbValoare;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dtpScadenta;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
     }

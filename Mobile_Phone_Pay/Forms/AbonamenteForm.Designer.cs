@@ -30,13 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Delete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtpScadenta = new System.Windows.Forms.DateTimePicker();
             this.tbValoare = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tbNet = new System.Windows.Forms.TextBox();
             this.tbMesaje = new System.Windows.Forms.TextBox();
@@ -57,14 +56,12 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xMLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deserializeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Delete = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epName)).BeginInit();
@@ -96,6 +93,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalii Abonament";
+            // 
+            // Delete
+            // 
+            this.Delete.CausesValidation = false;
+            this.Delete.Location = new System.Drawing.Point(593, 147);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 12;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // btnClose
             // 
@@ -132,23 +140,14 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dtpScadenta);
             this.groupBox2.Controls.Add(this.tbValoare);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(409, 25);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(363, 103);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Detalii Facturare";
-            // 
-            // dtpScadenta
-            // 
-            this.dtpScadenta.Location = new System.Drawing.Point(90, 54);
-            this.dtpScadenta.Name = "dtpScadenta";
-            this.dtpScadenta.Size = new System.Drawing.Size(246, 22);
-            this.dtpScadenta.TabIndex = 3;
+            this.groupBox2.Text = "Detalii Taxare";
             // 
             // tbValoare
             // 
@@ -160,23 +159,14 @@
             this.tbValoare.Validating += new System.ComponentModel.CancelEventHandler(this.TbValoare_Validating);
             this.tbValoare.Validated += new System.EventHandler(this.TbValoare_Validated);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Scadenta";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 26);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 17);
+            this.label5.Size = new System.Drawing.Size(34, 17);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Valoare";
+            this.label5.Text = "Pret";
             // 
             // tbNet
             // 
@@ -281,8 +271,7 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6});
+            this.columnHeader5});
             this.lvTipAbonament.FullRowSelect = true;
             this.lvTipAbonament.GridLines = true;
             this.lvTipAbonament.HideSelection = false;
@@ -319,11 +308,6 @@
             this.columnHeader5.Text = "Valoare";
             this.columnHeader5.Width = 100;
             // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Scadenta";
-            this.columnHeader6.Width = 100;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -347,7 +331,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -363,27 +347,16 @@
             // serializeToolStripMenuItem
             // 
             this.serializeToolStripMenuItem.Name = "serializeToolStripMenuItem";
-            this.serializeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.serializeToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.serializeToolStripMenuItem.Text = "Serialize";
             this.serializeToolStripMenuItem.Click += new System.EventHandler(this.SerializeToolStripMenuItem_Click);
             // 
             // deserializeToolStripMenuItem
             // 
             this.deserializeToolStripMenuItem.Name = "deserializeToolStripMenuItem";
-            this.deserializeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.deserializeToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.deserializeToolStripMenuItem.Text = "Deserialize";
             this.deserializeToolStripMenuItem.Click += new System.EventHandler(this.DeserializeToolStripMenuItem_Click);
-            // 
-            // Delete
-            // 
-            this.Delete.CausesValidation = false;
-            this.Delete.Location = new System.Drawing.Point(593, 147);
-            this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(75, 23);
-            this.Delete.TabIndex = 12;
-            this.Delete.Text = "Delete";
-            this.Delete.UseVisualStyleBackColor = true;
-            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // AbonamenteForm
             // 
@@ -426,9 +399,7 @@
         private System.Windows.Forms.TextBox tbDenumireAb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DateTimePicker dtpScadenta;
         private System.Windows.Forms.TextBox tbValoare;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEdit;
@@ -444,7 +415,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
