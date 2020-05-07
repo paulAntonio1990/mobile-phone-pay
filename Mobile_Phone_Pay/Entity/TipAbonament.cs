@@ -9,6 +9,7 @@ namespace Mobile_Phone_Pay.Entity
     [Serializable]
     public class TipAbonament
     {
+        public long Id { get; set; }
         public string Name { get; set; }
         public int NoMinutes { get; set; }
         public int NoMessages { get; set; }
@@ -16,8 +17,9 @@ namespace Mobile_Phone_Pay.Entity
         public double Price { get; set; }
 
         public TipAbonament() { }
-        public TipAbonament(string name, int noMinutes, int noMessages, int noNetMb, double price)
+        public TipAbonament(long id, string name, int noMinutes, int noMessages, int noNetMb, double price)
         {
+            Id = id;
             Name = name;
             NoMinutes = noMinutes;
             NoMessages = noMessages;

@@ -1,4 +1,5 @@
 ﻿using Mobile_Phone_Pay.Entity;
+using Mobile_Phone_Pay.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -201,7 +202,15 @@ namespace Mobile_Phone_Pay.Forms
             {
                 try
                 {
+                    long id = ExtraOptiuneRepository.saveExtraOptiune(
+                        denumire,
+                        int.Parse(minute),
+                        int.Parse(mesaje),
+                        int.Parse(netMb),
+                        double.Parse(pretExtraOptiune));
+
                     var extraOptiune = new ExtraOptiune(
+                        id,
                         denumire,
                         int.Parse(minute),
                         int.Parse(mesaje),
@@ -211,12 +220,7 @@ namespace Mobile_Phone_Pay.Forms
                     extraOptiuni.Add(extraOptiune);
 
                     AfisareExtraOptiuni();
-
-                    tbDenumire.Clear();
-                    tbMinute.Clear();
-                    tbMesaje.Clear();
-                    tbNetMb.Clear();
-                    tbPret.Clear();
+                    ClearForm();
                 }
                 catch
                 {
@@ -224,6 +228,15 @@ namespace Mobile_Phone_Pay.Forms
                 }
             }
 
+        }
+
+        private void ClearForm()
+        {
+            tbDenumire.Clear();
+            tbMinute.Clear();
+            tbMesaje.Clear();
+            tbNetMb.Clear();
+            tbPret.Clear();
         }
 
         private void AfisareExtraOptiuni()
@@ -282,6 +295,7 @@ namespace Mobile_Phone_Pay.Forms
             {
                 ListViewItem lvi = lvExtraOptiuni.SelectedItems[0];
                 ExtraOptiune optiune = (ExtraOptiune)lvi.Tag;
+                ExtraOptiuneRepository.deleteExtraOptiune(optiune);
                 extraOptiuni.Remove(optiune);
                 AfisareExtraOptiuni();
             }
@@ -301,6 +315,7 @@ namespace Mobile_Phone_Pay.Forms
             EditExtraOptiuneForm editExtraOptiuneForm = new EditExtraOptiuneForm(optiune);
             if (editExtraOptiuneForm.ShowDialog() == DialogResult.OK)
             {
+                ExtraOptiuneRepository.updateExtraOptiune(optiune);
                 AfisareExtraOptiuni();
             }
         }
@@ -318,41 +333,12 @@ namespace Mobile_Phone_Pay.Forms
 
         private void EditToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lvExtraOptiuni.SelectedItems.Count != 1)
-            {
-                MessageBox.Show("Alegeti o extra-optiune!");
-                return;
-            }
-
-            ListViewItem lvi = lvExtraOptiuni.SelectedItems[0];
-            ExtraOptiune optiune = (ExtraOptiune)lvi.Tag;
-
-            EditExtraOptiuneForm editExtraOptiuneForm = new EditExtraOptiuneForm(optiune);
-            if (editExtraOptiuneForm.ShowDialog() == DialogResult.OK)
-            {
-                AfisareExtraOptiuni();
-            }
+            this.btnEdit.PerformClick();
         }
 
         private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lvExtraOptiuni.SelectedItems.Count != 1)
-            {
-                MessageBox.Show("Alegeti o extra-optiune!");
-                return;
-            }
-
-            if (MessageBox.Show(
-                "Sinteti sigur de stergere?",
-                "Stergere extra-optiune",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
-                ListViewItem lvi = lvExtraOptiuni.SelectedItems[0];
-                ExtraOptiune optiune = (ExtraOptiune)lvi.Tag;
-                extraOptiuni.Remove(optiune);
-                AfisareExtraOptiuni();
-            }
+            this.btnDelete.PerformClick();
         }
 
         private void PageSetupToolStripMenuItem_Click(object sender, EventArgs e)
@@ -565,6 +551,24 @@ namespace Mobile_Phone_Pay.Forms
             {
                 printDocument.Print();
             }
+        }
+
+        private void ExtraOptiuniForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadExtraOptiuni();
+                AfisareExtraOptiuni();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadExtraOptiuni()
+        {
+            extraOptiuni.AddRange(ExtraOptiuneRepository.findAllExtraOptiune());
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Mobile_Phone_Pay.Entity;
 using Mobile_Phone_Pay.Exceptions;
+using Mobile_Phone_Pay.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -101,8 +102,8 @@ namespace Mobile_Phone_Pay.Forms
                     "At least 3 characters!");
             }
 
-            string noMinutes = tbMinute.Text;
-            if (noMinutes.Length < 1 || (noMinutes.StartsWith("0") && noMinutes.Length > 1))
+            string minute = tbMinute.Text;
+            if (minute.Length < 1 || (minute.StartsWith("0") && minute.Length > 1))
             {
                 isValid = false;
                 epMinutes.SetError(
@@ -110,8 +111,8 @@ namespace Mobile_Phone_Pay.Forms
                     "Invalid quantity!");
             }
 
-            string noMessages = tbMesaje.Text;
-            if (noMessages.Length < 1 || (noMessages.StartsWith("0") && noMessages.Length > 1))
+            string mesage = tbMesaje.Text;
+            if (mesage.Length < 1 || (mesage.StartsWith("0") && mesage.Length > 1))
             {
                 isValid = false;
                 epMessages.SetError(
@@ -119,8 +120,8 @@ namespace Mobile_Phone_Pay.Forms
                     "Invalid quantity!");
             }
 
-            string noNetMb = tbNet.Text;
-            if (noNetMb.Length < 1 || (noNetMb.StartsWith("0") && noNetMb.Length > 1))
+            string net_MB = tbNet.Text;
+            if (net_MB.Length < 1 || (net_MB.StartsWith("0") && net_MB.Length > 1))
             {
                 isValid = false;
                 epNetMb.SetError(
@@ -151,29 +152,40 @@ namespace Mobile_Phone_Pay.Forms
             {
                 try
                 {
+                    long id = TipAbonamentRepository.saveTipAbonament(denumireAbonament,
+                        int.Parse(minute),
+                        int.Parse(mesage),
+                        int.Parse(net_MB),
+                        double.Parse(pretAbonament));
+
                     var tipAbonament = new TipAbonament(
+                        id,
                         denumireAbonament,
-                        int.Parse(noMinutes),
-                        int.Parse(noMessages),
-                        int.Parse(noNetMb),
+                        int.Parse(minute),
+                        int.Parse(mesage),
+                        int.Parse(net_MB),
                         double.Parse(pretAbonament));
 
                     abonamente.Add(tipAbonament);
 
                     AfisareAbonamente();
-
-                    tbDenumireAb.Clear();
-                    tbMinute.Clear();
-                    tbMesaje.Clear();
-                    tbNet.Clear();
-                    tbValoare.Clear();
+                    ClearForm();
                 }
-                catch
+                catch(Exception ex)
                 {
-                    MessageBox.Show("Error encountered!");
+                    MessageBox.Show(ex.Message);
                 }
             }
 
+        }
+
+        private void ClearForm()
+        {
+            tbDenumireAb.Clear();
+            tbMinute.Clear();
+            tbMesaje.Clear();
+            tbNet.Clear();
+            tbValoare.Clear();
         }
 
         private void TbMinute_Validating(object sender, CancelEventArgs e)
@@ -264,6 +276,11 @@ namespace Mobile_Phone_Pay.Forms
             }
         }
 
+        public void LoadAbonamente()
+        {
+            abonamente.AddRange(TipAbonamentRepository.findAllTipAbonament());
+        }
+
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -309,6 +326,7 @@ namespace Mobile_Phone_Pay.Forms
             EditTipAbonamentForm editTipAbonamentForm = new EditTipAbonamentForm(abonament);
             if (editTipAbonamentForm.ShowDialog() == DialogResult.OK)
             {
+                TipAbonamentRepository.updateAbonament(abonament);
                 AfisareAbonamente();
             }
         }
@@ -328,8 +346,23 @@ namespace Mobile_Phone_Pay.Forms
             {
                 ListViewItem lvi = lvTipAbonament.SelectedItems[0];
                 TipAbonament abonament = (TipAbonament)lvi.Tag;
+
+                TipAbonamentRepository.deleteAbonament(abonament);
                 abonamente.Remove(abonament);
                 AfisareAbonamente();
+            }
+        }
+
+        private void AbonamenteForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadAbonamente();
+                AfisareAbonamente();
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

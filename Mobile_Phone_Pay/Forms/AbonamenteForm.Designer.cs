@@ -370,6 +370,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "AbonamenteForm";
             this.Text = "AbonamenteForm";
+            this.Load += new System.EventHandler(this.AbonamenteForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AbonamenteForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

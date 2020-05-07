@@ -13,3 +13,8 @@ C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Ph
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.ClientiForm.resources
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.EditTipAbonamentForm.resources
 C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.Forms.EditExtraOptiuneForm.resources
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\bin\Debug\System.Data.SQLite.dll
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\bin\Debug\System.Data.SQLite.xml
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\bin\Debug\System.Data.SQLite.dll.config
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\obj\Debug\Mobile_Phone_Pay.csproj.CopyComplete
+C:\My place\Facultate\sem 4\PAW\2020_restanta\Proiect\Mobile_Phone_Pay\Mobile_Phone_Pay\bin\Debug\Repositories\database.db
