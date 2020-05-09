@@ -48,9 +48,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.epNume = new System.Windows.Forms.ErrorProvider(this.components);
             this.epPrenume = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epDataNasterii = new System.Windows.Forms.ErrorProvider(this.components);
-            this.epScadenta = new System.Windows.Forms.ErrorProvider(this.components);
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvClienti = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,13 +60,15 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.epTipAbonament = new System.Windows.Forms.ErrorProvider(this.components);
+            this.epExtraOptiune = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epNume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPrenume)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDataNasterii)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epScadenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epTipAbonament)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epExtraOptiune)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -206,6 +206,8 @@
             this.cbExtraOptiune.Name = "cbExtraOptiune";
             this.cbExtraOptiune.Size = new System.Drawing.Size(231, 24);
             this.cbExtraOptiune.TabIndex = 3;
+            this.cbExtraOptiune.SelectedIndexChanged += new System.EventHandler(this.CbExtraOptiune_SelectedIndexChanged);
+            this.cbExtraOptiune.Validating += new System.ComponentModel.CancelEventHandler(this.CbExtraOptiune_Validating);
             // 
             // label7
             // 
@@ -223,6 +225,8 @@
             this.cbTipAbonament.Name = "cbTipAbonament";
             this.cbTipAbonament.Size = new System.Drawing.Size(198, 24);
             this.cbTipAbonament.TabIndex = 1;
+            this.cbTipAbonament.SelectedIndexChanged += new System.EventHandler(this.CbTipAbonament_SelectedIndexChanged);
+            this.cbTipAbonament.Validating += new System.ComponentModel.CancelEventHandler(this.CbTipAbonament_Validating);
             // 
             // label6
             // 
@@ -241,17 +245,10 @@
             // 
             this.epPrenume.ContainerControl = this;
             // 
-            // epDataNasterii
+            // lvClienti
             // 
-            this.epDataNasterii.ContainerControl = this;
-            // 
-            // epScadenta
-            // 
-            this.epScadenta.ContainerControl = this;
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvClienti.CausesValidation = false;
+            this.lvClienti.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -259,15 +256,16 @@
             this.columnHeader5,
             this.columnHeader6,
             this.columnHeader7});
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(30, 252);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(750, 216);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lvClienti.FullRowSelect = true;
+            this.lvClienti.GridLines = true;
+            this.lvClienti.HideSelection = false;
+            this.lvClienti.Location = new System.Drawing.Point(30, 252);
+            this.lvClienti.MultiSelect = false;
+            this.lvClienti.Name = "lvClienti";
+            this.lvClienti.Size = new System.Drawing.Size(750, 216);
+            this.lvClienti.TabIndex = 0;
+            this.lvClienti.UseCompatibleStateImageBehavior = false;
+            this.lvClienti.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -322,6 +320,7 @@
             this.btnEdit.TabIndex = 0;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // btnDelete
             // 
@@ -332,6 +331,7 @@
             this.btnDelete.TabIndex = 0;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnCancel
             // 
@@ -345,6 +345,14 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // epTipAbonament
+            // 
+            this.epTipAbonament.ContainerControl = this;
+            // 
+            // epExtraOptiune
+            // 
+            this.epExtraOptiune.ContainerControl = this;
+            // 
             // ClientiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -354,12 +362,13 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvClienti);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ClientiForm";
             this.Text = "ClientiForm";
+            this.Load += new System.EventHandler(this.ClientiForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ClientiForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -369,8 +378,8 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epNume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epPrenume)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epDataNasterii)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.epScadenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epTipAbonament)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epExtraOptiune)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,9 +405,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ErrorProvider epNume;
         private System.Windows.Forms.ErrorProvider epPrenume;
-        private System.Windows.Forms.ErrorProvider epDataNasterii;
-        private System.Windows.Forms.ErrorProvider epScadenta;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvClienti;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -410,5 +417,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ErrorProvider epTipAbonament;
+        private System.Windows.Forms.ErrorProvider epExtraOptiune;
     }
 }

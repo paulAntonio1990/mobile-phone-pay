@@ -37,7 +37,7 @@ namespace Mobile_Phone_Pay.Repositories
         public static List<ExtraOptiune> findAllExtraOptiune()
         {
             string query = "SELECT * FROM ExtraOptiuni";
-            List<ExtraOptiune> abonamente = new List<ExtraOptiune>();
+            List<ExtraOptiune> extraOptiuni = new List<ExtraOptiune>();
 
             using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
             {
@@ -57,11 +57,42 @@ namespace Mobile_Phone_Pay.Repositories
                         double pret = (double)sqlReader["Pret"];
 
                         ExtraOptiune extraOptiune = new ExtraOptiune(id, denumire, minute, mesaje, net_MB, pret);
-                        abonamente.Add(extraOptiune);
+                        extraOptiuni.Add(extraOptiune);
                     }
                 }
 
-                return abonamente;
+                return extraOptiuni;
+            }
+        }
+
+        public static ExtraOptiune findExtraOptiuneById(long idExtraOptiune)
+        {
+            string query = "SELECT * FROM ExtraOptiuni where Id=@id";
+            ExtraOptiune extraOptiune = null;
+
+            using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
+            {
+                connection.Open();
+
+                var command = new SQLiteCommand(query, connection);
+                command.Parameters.AddWithValue("@id", idExtraOptiune);
+
+                using (SQLiteDataReader sqlReader = command.ExecuteReader())
+                {
+                    while (sqlReader.Read())
+                    {
+                        long id = (long)sqlReader["Id"];
+                        string denumire = (string)sqlReader["Denumire"];
+                        int minute = Convert.ToInt32((long)sqlReader["Minute"]);
+                        int mesaje = Convert.ToInt32((long)sqlReader["Mesaje"]);
+                        int net_MB = Convert.ToInt32((long)sqlReader["Net_MB"]);
+                        double pret = (double)sqlReader["Pret"];
+
+                        extraOptiune = new ExtraOptiune(id, denumire, minute, mesaje, net_MB, pret);
+                    }
+                }
+
+                return extraOptiune;
             }
         }
 

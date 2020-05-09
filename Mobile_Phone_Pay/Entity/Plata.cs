@@ -10,6 +10,7 @@ namespace Mobile_Phone_Pay.Entity
     [Serializable]
     public class Plata
     {
+        public long Id { get; set; }
         public double Value { get; set; }
 
         private DateTime dueDate;
@@ -26,8 +27,9 @@ namespace Mobile_Phone_Pay.Entity
         }
 
         public Plata() { }
-        public Plata(double value, DateTime dueDate)
+        public Plata(long id, double value, DateTime dueDate)
         {
+            Id = id;
             Value = value;
             DueDate = dueDate;
         }

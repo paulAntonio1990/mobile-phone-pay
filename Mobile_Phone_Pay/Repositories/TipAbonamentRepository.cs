@@ -13,23 +13,24 @@ namespace Mobile_Phone_Pay.Repositories
     { 
         public static long saveTipAbonament(string denumire, int minute, int mesaje, int net_mb, double pret)
         {
-                string query = "INSERT INTO Abonamente(Denumire, Minute, Mesaje, Net_MB, Pret)" +
-                 "VALUES (@denumire, @minute, @mesaje, @net_MB, @pret); " +
-                 " SELECT last_insert_rowid()";
+            string query = "INSERT INTO Abonamente(Denumire, Minute, Mesaje, Net_MB, Pret)" +
+                "VALUES (@denumire, @minute, @mesaje, @net_MB, @pret); " +
+                " SELECT last_insert_rowid()";
             long idAbonament = 0;
 
             using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
             {
-                var command = new SQLiteCommand(query, connection);
-                command.Parameters.AddWithValue("@denumire", denumire);
-                command.Parameters.AddWithValue("@minute", minute);
-                command.Parameters.AddWithValue("@mesaje", mesaje);
-                command.Parameters.AddWithValue("@net_MB", net_mb);
-                command.Parameters.AddWithValue("@pret", pret);
-
                 connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@denumire", denumire);
+                    command.Parameters.AddWithValue("@minute", minute);
+                    command.Parameters.AddWithValue("@mesaje", mesaje);
+                    command.Parameters.AddWithValue("@net_MB", net_mb);
+                    command.Parameters.AddWithValue("@pret", pret);
 
-                idAbonament = (long)command.ExecuteScalar();
+                    idAbonament = (long)command.ExecuteScalar();
+                }           
             }
 
             return idAbonament;
@@ -44,25 +45,58 @@ namespace Mobile_Phone_Pay.Repositories
             {
                 connection.Open();
 
-                var command = new SQLiteCommand(query, connection);
-
-                using (SQLiteDataReader sqlReader = command.ExecuteReader())
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
                 {
-                    while (sqlReader.Read())
+                    using (SQLiteDataReader sqlReader = command.ExecuteReader())
                     {
-                        long id = (long)sqlReader["Id"];
-                        string denumire = (string)sqlReader["Denumire"];
-                        int minute = Convert.ToInt32((long)sqlReader["Minute"]);
-                        int mesaje = Convert.ToInt32((long)sqlReader["Mesaje"]);
-                        int net_MB = Convert.ToInt32((long)sqlReader["Net_MB"]);
-                        double pret = (double)sqlReader["Pret"];
+                        while (sqlReader.Read())
+                        {
+                            long id = (long)sqlReader["Id"];
+                            string denumire = (string)sqlReader["Denumire"];
+                            int minute = Convert.ToInt32((long)sqlReader["Minute"]);
+                            int mesaje = Convert.ToInt32((long)sqlReader["Mesaje"]);
+                            int net_MB = Convert.ToInt32((long)sqlReader["Net_MB"]);
+                            double pret = (double)sqlReader["Pret"];
 
-                        TipAbonament abonament = new TipAbonament(id, denumire, minute, mesaje, net_MB, pret);
-                        abonamente.Add(abonament);
+                            TipAbonament abonament = new TipAbonament(id, denumire, minute, mesaje, net_MB, pret);
+                            abonamente.Add(abonament);
+                        }
+                    }
+                }                
+
+                return abonamente; 
+            }
+        }
+
+        public static TipAbonament findTipAbonamentById(long idTipAbonament)
+        {
+            string query = "SELECT * FROM Abonamente where Id=@id";
+            TipAbonament abonament = null;
+
+            using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
+            {
+                connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", idTipAbonament);
+                    using (SQLiteDataReader sqlReader = command.ExecuteReader())
+                    {
+                        while (sqlReader.Read())
+                        {
+                            long id = (long)sqlReader["Id"];
+                            string denumire = (string)sqlReader["Denumire"];
+                            int minute = Convert.ToInt32((long)sqlReader["Minute"]);
+                            int mesaje = Convert.ToInt32((long)sqlReader["Mesaje"]);
+                            int net_MB = Convert.ToInt32((long)sqlReader["Net_MB"]);
+                            double pret = (double)sqlReader["Pret"];
+
+                            abonament = new TipAbonament(id, denumire, minute, mesaje, net_MB, pret);
+                        }
                     }
                 }
 
-                return abonamente; 
+                return abonament;
             }
         }
 
@@ -72,12 +106,14 @@ namespace Mobile_Phone_Pay.Repositories
 
             using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
             {
-                var command = new SQLiteCommand(query, connection);
-                command.Parameters.AddWithValue("@id", aboanment.Id);
-
                 connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", aboanment.Id);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                
             }
         }
 
@@ -89,17 +125,19 @@ namespace Mobile_Phone_Pay.Repositories
 
             using (SQLiteConnection connection = new SQLiteConnection(Connection.ConnectionString))
             {
-                var command = new SQLiteCommand(query, connection);
-                command.Parameters.AddWithValue("@denumire", abonament.Name);
-                command.Parameters.AddWithValue("@minute", abonament.NoMinutes);
-                command.Parameters.AddWithValue("@mesaje", abonament.NoMessages);
-                command.Parameters.AddWithValue("@net_MB", abonament.NoNetMb);
-                command.Parameters.AddWithValue("@pret", abonament.Price);
-                command.Parameters.AddWithValue("@id", abonament.Id);
-
                 connection.Open();
+                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@denumire", abonament.Name);
+                    command.Parameters.AddWithValue("@minute", abonament.NoMinutes);
+                    command.Parameters.AddWithValue("@mesaje", abonament.NoMessages);
+                    command.Parameters.AddWithValue("@net_MB", abonament.NoNetMb);
+                    command.Parameters.AddWithValue("@pret", abonament.Price);
+                    command.Parameters.AddWithValue("@id", abonament.Id);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                    
             }
         }
     }
