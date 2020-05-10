@@ -228,6 +228,8 @@ namespace Mobile_Phone_Pay.Forms
                 LoadExtraOptiuniComboBox();
                 LoadClienti();
                 AfisareClienti();
+
+                pbPozaClient.AllowDrop = true;
                
             }
             catch(Exception ex)
@@ -360,6 +362,49 @@ namespace Mobile_Phone_Pay.Forms
                 AfisareClienti();
             }
 
+        }
+
+        private void PbPozaClient_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void PbPozaClient_DragDrop(object sender, DragEventArgs e)
+        {
+            var filesDropped = (string[])e.Data.GetData(DataFormats.FileDrop);
+            
+            if (filesDropped.Length != 1)
+            {
+                MessageBox.Show(
+                    "Error while Drag and Drop picture",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (!checkIfImageAlreadyDropped())
+                {
+                    pbPozaClient.Image = null;
+                }
+                pbPozaClient.SizeMode = PictureBoxSizeMode.StretchImage;
+                try {
+                    pbPozaClient.Image = Image.FromFile(filesDropped[0]);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(
+                    "File is not a picture!" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private bool checkIfImageAlreadyDropped()
+        {
+            return pbPozaClient == null || pbPozaClient.Image == null;
         }
     }
 }

@@ -62,6 +62,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.epTipAbonament = new System.Windows.Forms.ErrorProvider(this.components);
             this.epExtraOptiune = new System.Windows.Forms.ErrorProvider(this.components);
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pbPozaClient = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -69,6 +71,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.epPrenume)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epTipAbonament)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epExtraOptiune)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPozaClient)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -262,7 +266,7 @@
             this.lvClienti.Location = new System.Drawing.Point(30, 252);
             this.lvClienti.MultiSelect = false;
             this.lvClienti.Name = "lvClienti";
-            this.lvClienti.Size = new System.Drawing.Size(750, 216);
+            this.lvClienti.Size = new System.Drawing.Size(1024, 216);
             this.lvClienti.TabIndex = 0;
             this.lvClienti.UseCompatibleStateImageBehavior = false;
             this.lvClienti.View = System.Windows.Forms.View.Details;
@@ -353,11 +357,34 @@
             // 
             this.epExtraOptiune.ContainerControl = this;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.pbPozaClient);
+            this.groupBox4.Location = new System.Drawing.Point(787, 44);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(267, 195);
+            this.groupBox4.TabIndex = 10;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Poza Client";
+            // 
+            // pbPozaClient
+            // 
+            this.pbPozaClient.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pbPozaClient.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbPozaClient.Location = new System.Drawing.Point(48, 24);
+            this.pbPozaClient.Name = "pbPozaClient";
+            this.pbPozaClient.Size = new System.Drawing.Size(170, 151);
+            this.pbPozaClient.TabIndex = 0;
+            this.pbPozaClient.TabStop = false;
+            this.pbPozaClient.DragDrop += new System.Windows.Forms.DragEventHandler(this.PbPozaClient_DragDrop);
+            this.pbPozaClient.DragEnter += new System.Windows.Forms.DragEventHandler(this.PbPozaClient_DragEnter);
+            // 
             // ClientiForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 515);
+            this.ClientSize = new System.Drawing.Size(1066, 515);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
@@ -380,6 +407,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.epPrenume)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epTipAbonament)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.epExtraOptiune)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbPozaClient)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,5 +448,7 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ErrorProvider epTipAbonament;
         private System.Windows.Forms.ErrorProvider epExtraOptiune;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.PictureBox pbPozaClient;
     }
 }
