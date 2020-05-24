@@ -228,15 +228,19 @@ namespace Mobile_Phone_Pay.Forms
                 LoadExtraOptiuniComboBox();
                 LoadClienti();
                 AfisareClienti();
+                EnableDropOnPictureBox();
 
-                pbPozaClient.AllowDrop = true;
-               
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
 }
+
+        private void EnableDropOnPictureBox()
+        {
+            pbPozaClient.AllowDrop = true;
+        }
 
         private void LoadClienti()
         {
