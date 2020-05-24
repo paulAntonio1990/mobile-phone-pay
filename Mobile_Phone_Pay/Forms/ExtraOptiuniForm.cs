@@ -355,25 +355,17 @@ namespace Mobile_Phone_Pay.Forms
 
         private void PrintDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            // Initialize the font to be used for printing.
             Font font = new Font("Microsoft Sans Serif", 12);
 
             var pageSettings = printDocument.DefaultPageSettings;
-            // Initialize local variables that contain the bounds of the printing 
-            // area rectangle.
+
             var intPrintAreaHeight = pageSettings.PaperSize.Height - pageSettings.Margins.Top - pageSettings.Margins.Bottom;
             var intPrintAreaWidth = pageSettings.PaperSize.Width - pageSettings.Margins.Left - pageSettings.Margins.Right;
 
-            // Initialize local variables to hold margin values that will serve
-            // as the X and Y coordinates for the upper left corner of the printing 
-            // area rectangle.
             var marginLeft = pageSettings.Margins.Left;
-            // X coordinate
-            var marginTop = pageSettings.Margins.Top;
-            // Y coordinate
 
-            // If the user selected Landscape mode, swap the printing area height 
-            // and width.
+            var marginTop = pageSettings.Margins.Top;
+
             if (printDocument.DefaultPageSettings.Landscape)
             {
                 var intTemp = intPrintAreaHeight;
@@ -384,14 +376,6 @@ namespace Mobile_Phone_Pay.Forms
             const int rowHeight = 40;
             var columnWidth = intPrintAreaWidth / 5;
 
-            // Instantiate the StringFormat class, which encapsulates text layout 
-            // information (such as alignment and line spacing), display manipulations 
-            // (such as ellipsis insertion and national digit substitution) and OpenType 
-            // features. Use of StringFormat causes MeasureString and DrawString to use
-            // only an integer number of lines when printing each page, ignoring partial
-            // lines that would otherwise likely be printed if the number of lines per 
-            // page do not divide up cleanly for each page (which is usually the case).
-            // See further discussion in the SDK documentation about StringFormatFlags.
             StringFormat fmt = new StringFormat(StringFormatFlags.LineLimit);
             fmt.Trimming = StringTrimming.EllipsisCharacter;
 
@@ -402,32 +386,22 @@ namespace Mobile_Phone_Pay.Forms
 
             while (currentExtraOptiuneIndex < extraOptiuni.Count)
             {
-                //Reset the horizontal drawing coordinate
                 var currentX = marginLeft;
 
-                //Draw the border of the cell
                 e.Graphics.DrawRectangle(
                     Pens.Black,
                     currentX,
                     currentY,
                     columnWidth,
                     rowHeight);
-                //Draw the text in the cell
-                /*e.Graphics.DrawString(
-                    _participants[i].FirstName,
-                    font,
-                    Brushes.Black,
-                    currentX,
-                    currentY,
-                    fmt);*/
-                // By specifying a LayoutRectangle, we are forcing the text into a specific area, with automatic word wrapping and other features controllable through the StringFormat parameter
+
                 e.Graphics.DrawString(
                     extraOptiuni[currentExtr].Name,
                     font,
                     Brushes.Black,
                     new RectangleF(currentX, currentY, columnWidth, rowHeight),
                     fmt);
-                //Update the horizontal drawing coordinate
+
                 currentX += columnWidth;
 
                 e.Graphics.DrawRectangle(
@@ -489,13 +463,9 @@ namespace Mobile_Phone_Pay.Forms
                     currentY,
                     fmt);
 
-                //Update the participant index
                 currentExtraOptiuneIndex++;
-                //Update the vertifcal drawing coordinate
                 currentY += rowHeight;
 
-
-                // HasMorePages tells the printing module whether another PrintPage event should be fired.
                 if (currentY + rowHeight > intPrintAreaHeight)
                 {
                     e.HasMorePages = true;
